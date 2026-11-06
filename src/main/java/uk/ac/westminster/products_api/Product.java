@@ -1,6 +1,8 @@
 package uk.ac.westminster.products_api;
 
-public class Product {
+import static org.apache.tomcat.util.net.openssl.OpenSSLStatus.getName;
+
+public abstract class Product {
     private Long id; // Must be Long (wrapper), not primitive long
     private String name;
     private double price;
@@ -8,11 +10,14 @@ public class Product {
     public Product() {
     }
 
+
+
     public Product(Long id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
+    public abstract String getSummary();
 
     public Long getId() {
         return id;
@@ -37,4 +42,7 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+
+
 }

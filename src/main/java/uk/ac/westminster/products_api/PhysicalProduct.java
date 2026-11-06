@@ -4,11 +4,12 @@
 
 package uk.ac.westminster.products_api;
 
-public class PhysicalProduct extends Product {
+public class PhysicalProduct extends Product  implements Discountable{
 
     // Fields
     private double weightKg;
     private String dimensions;
+    private double discountedPrice;
 
     // 1. Empty no-argument constructor
     public PhysicalProduct() {
@@ -21,6 +22,7 @@ public class PhysicalProduct extends Product {
         super(id, name, price);
         this.weightKg = weightKg;
         this.dimensions = dimensions;
+        this.discountedPrice = price;
     }
 
     // 3. Getters
@@ -31,4 +33,24 @@ public class PhysicalProduct extends Product {
     public String getDimensions() {
         return dimensions;
     }
+
+    @Override
+    public String getSummary() {
+        return "Physical: " + getName() + "| weightKg: " + getWeightKg();
+    }
+
+    @Override
+    public void applyDiscount(double rate) {
+        double cappedRate = Math.min(rate,0.20);
+        discountedPrice = getPrice() * (1-cappedRate);
+
+    }
+    @Override
+    public double getDiscountedPrice() {
+       return  discountedPrice;
+    }
+
 }
+
+
+

@@ -34,6 +34,11 @@ public class ProductController {
         return productService.addProduct(product);
     }
 
+    @GetMapping("/products/summaries")
+    public List<String> getSummaries() {
+        return productService.getAllSummaries();
+    }
+
     // DELETE /products/{id}
     // Delete a product by ID
     @DeleteMapping("/products/{id}")
@@ -41,10 +46,13 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
+
     // GET /products/search?name=Lap
     // Search products by name
     @GetMapping("/products/search")
     public List<Product> search(@RequestParam String name) {
         return productService.findByName(name);
     }
+
+
 }
